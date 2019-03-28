@@ -1,0 +1,41 @@
+<h4 mat-dialog-title>Location Master </h4>
+  <div mat-dialog-content>
+      <form class="example-form"[formGroup]="locationForm" (ngSubmit)="onFormSubmit(locationForm.value)">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Location" formControlName="location" [(ngModel)]="location.location">
+        </mat-form-field>
+        <mat-error>  
+          <span *ngIf="!locationForm.get('location').valid && locationForm.get('location').touched">Please enter location name</span>  
+        </mat-error>
+
+        <!-- <mat-form-field>
+          <input matInput placeholder="Select File"><br><br>
+        </mat-form-field> -->
+        <mat-form-field class="example-full-width">
+            <mat-label>City</mat-label>
+            <mat-select  (selectionChange)="setCity($event.value)">
+              <mat-option *ngFor="let city of cityList" [value]="city">
+                {{city.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- <mat-error>  
+          <span *ngIf="!locationForm.get('cityName').valid && locationForm.get('cityName').touched">Please Select City</span>  
+        </mat-error> -->
+
+
+        <mat-grid-list cols="3" rowHeight="10em">
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="primary" [disabled]="!locationForm.dirty || !locationForm.valid" (click)="submitForm();">Submit</button>
+            </mat-grid-tile>
+            <mat-grid-tile>  
+              <button mat-raised-button color="warn" type="reset">Clear</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        </div>
+      </form>
+  </div>

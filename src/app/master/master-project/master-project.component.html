@@ -1,0 +1,65 @@
+<mat-card>
+  <button mat-raised-button (click)="openDialog()" color="primary">Create Project</button>
+  </mat-card>
+  <mat-card>
+    <div class="example-container mat-elevation-z8">  
+        <mat-table #Table [dataSource]="firmDataSource" matSort>  
+    
+            <!-- For ID -->  
+    
+            <!-- For Firm name -->  
+            <ng-container matColumnDef="firmName" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> FIRM NAME </mat-header-cell>  
+                <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   
+            </ng-container>  
+            
+            <ng-container matColumnDef="projectName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </mat-header-cell>  
+              <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell> 
+            </ng-container>  
+
+             <ng-container matColumnDef="city" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>  
+             <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>
+            </ng-container>  
+
+            <ng-container matColumnDef="location" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>  
+               <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>  
+             </ng-container>  
+
+            <ng-container matColumnDef="address" sticky>  
+             <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>  
+              <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   
+            </ng-container>  
+
+            <ng-container matColumnDef="businessValue" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Business Value </mat-header-cell>  
+                <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>  
+             </ng-container> 
+
+            <ng-container matColumnDef="actions" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                 <mat-cell *matCellDef="let firm">  
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit Firm"
+                    (click)="editFirmDetails(firm.id)">
+                    <i class="material-icons">create</i>
+                  </button>
+    
+                  <button mat-raised-button color="warn" 
+                    matTooltip="Delete Firm"
+                    style="margin-left: 10px">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>  
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+        </mat-table>  
+    
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+        </mat-paginator> 
+    </div>
+    </mat-card>

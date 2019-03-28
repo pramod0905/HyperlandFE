@@ -1,0 +1,36 @@
+<h4 mat-dialog-title>City Master </h4>
+  <div mat-dialog-content>
+      <form class="example-form"[formGroup]="cityForm" (ngSubmit)="onFormSubmit(cityForm.value)">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="city" formControlName="city" [(ngModel)]="city.city">
+        </mat-form-field>
+        <mat-error>  
+          <span *ngIf="!cityForm.get('city').valid && cityForm.get('city').touched">Please enter city</span>  
+        </mat-error>
+
+        <!-- <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Address" formControlName="address" [(ngModel)]="firm.address"></textarea>
+        </mat-form-field>
+        <mat-error>  
+          <span *ngIf="!cityForm.get('address').valid && cityForm.get('address').touched">Please enter firm address</span>  
+        </mat-error> -->
+
+        <!-- <mat-form-field>
+          <input matInput placeholder="Select File"><br><br>
+        </mat-form-field> -->
+
+        <mat-grid-list cols="3" rowHeight="10em">
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="primary" [disabled]="!cityForm.dirty || !cityForm.valid" (click)="submitForm();">Submit</button>
+            </mat-grid-tile>
+            <mat-grid-tile>  
+              <button mat-raised-button color="warn" type="reset">Clear</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        </div>
+      </form>
+  </div>

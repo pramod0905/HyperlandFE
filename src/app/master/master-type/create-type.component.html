@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Type Master </h1>
+  <div mat-dialog-content>
+  <form class="example-form"[formGroup]="propertyTypeForm" (ngSubmit)="onFormSubmit(propertyTypeForm.value)">
+  <div class="example-container">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Type Name" formControlName="type" [(ngModel)]="propertyType.propertyType" >
+    </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!propertyTypeForm.get('type').valid && propertyTypeForm.get('type').touched">Please enter property type</span>  
+      </mat-error>
+
+    <mat-grid-list cols="3" rowHeight="10em">
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="primary" [disabled]="!propertyTypeForm.dirty || !propertyTypeForm.valid" (click)="submitForm();">Submit</button>
+        </mat-grid-tile>
+        <mat-grid-tile>  
+          <button mat-raised-button color="warn" type="reset">Clear</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+</form>
+
+  </div>

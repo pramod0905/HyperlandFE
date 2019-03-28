@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Block Master </h1>
+  <div mat-dialog-content>
+  <form class="example-form"[formGroup]="blockForm" (ngSubmit)="onFormSubmit(blockForm.value)">
+  <div class="example-container">
+    <mat-form-field>
+        <mat-label>Firm Name</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let firm of firmList" [value]="firm.firmName">
+            {{firm.firmName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Project Name</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let project of projectList" [value]="project.value">
+            {{project.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let type of typeList" [value]="type.value">
+            {{type.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Block Name">
+    </mat-form-field>
+
+
+    <mat-grid-list cols="3" rowHeight="10em">
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="primary" [disabled]="!blockForm.dirty || !blockForm.valid" (click)="submitForm();">Submit</button>
+        </mat-grid-tile>
+        <mat-grid-tile>  
+          <button mat-raised-button color="warn" type="reset">Clear</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+</form>
+
+  </div>

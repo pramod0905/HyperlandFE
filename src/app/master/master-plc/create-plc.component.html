@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>PLC Master </h1>
+  <div mat-dialog-content>
+  <form class="example-form">
+  <div class="example-container">
+    <mat-form-field>
+        <mat-label>Firm Name</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let firm of firmList" [value]="firm.firmName">
+            {{firm.firmName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Project Name</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let project of projectList" [value]="project.value">
+            {{project.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="PLC Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="PLC Charges">
+  </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Charging Type</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let chargingType of chargingTypeList" [value]="chargingType.value">
+            {{chargingType.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <button mat-raised-button  color="primary">Save</button>
+</div>
+</form>
+
+  </div>

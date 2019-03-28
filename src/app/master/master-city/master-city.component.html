@@ -1,0 +1,47 @@
+<mat-card>
+<button mat-raised-button (click)="openDialog()"color="primary" >Create City</button>
+</mat-card>
+<mat-card>
+    <div class="example-container mat-elevation-z8">  
+        <mat-table #Table [dataSource]="cityDataSource" matSort>  
+    
+            <!-- For ID -->  
+            <ng-container matColumnDef="id" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>  
+                <mat-cell *matCellDef="let city"> {{city.id}} </mat-cell>  
+            </ng-container>  
+    
+            <!-- For Firm name -->  
+            <ng-container matColumnDef="city" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> CITY </mat-header-cell>  
+                <mat-cell *matCellDef="let c"> {{c.city}} </mat-cell>  
+            </ng-container>  
+            
+            <ng-container matColumnDef="actions" sticky>  
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
+                <mat-cell *matCellDef="let city"> 
+                  <button mat-raised-button color="primary"
+                    matTooltip="Edit City"
+                    (click)="editCityDetails(city.id)"
+                  >
+                    <i class="material-icons">create</i>
+                  </button>
+    
+                  <button mat-raised-button color="warn" 
+                    matTooltip="Delete City"
+                    style="margin-left: 10px"
+                    (click)="openConfirmDeleteDialog(city.id)"
+                    >
+                    <i class="material-icons">delete</i>
+                  </button>
+                </mat-cell>  
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>  
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+        </mat-table>  
+    
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]">  
+        </mat-paginator> 
+    </div>
+    </mat-card>

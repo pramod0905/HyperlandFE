@@ -1,0 +1,76 @@
+<h1 mat-dialog-title>Project Master </h1>
+  <div mat-dialog-content>
+  <form class="example-form"[formGroup]="projectForm" (ngSubmit)="onFormSubmit(projectForm.value)">
+  <div class="example-container">
+    <mat-form-field class="example-full-width">
+        <mat-label>Firm Name</mat-label>
+        <mat-select formControlName="firmName" [(ngModel)]="project.firmName" (selectionChange)="setFirmId($event.value)">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.firmName">
+            {{firm.firmName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-error>  
+        <span *ngIf="!projectForm.get('firmName').valid && projectForm.get('firmName').touched">Please Select Firm</span>  
+      </mat-error>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Project Name" formControlName="projectName" [(ngModel)]="project.projectName">
+    </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!projectForm.get('projectName').valid && projectForm.get('projectName').touched">Please enter project name</span>  
+    </mat-error>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>City</mat-label>
+        <mat-select [(ngModel)]="project.cityName" formControlName="cityName" (selectionChange)="setCity($event.value)">
+          <mat-option *ngFor="let city of cityList" [value]="city.city">
+            {{city.city}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!projectForm.get('cityName').valid && projectForm.get('cityName').touched">Please Select City</span>  
+    </mat-error>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Loaction</mat-label>
+        <mat-select [(ngModel)]="project.location" formControlName="location" (selectionChange)="setLocation($event.value)">
+          <mat-option *ngFor="let location of locationList" [value]="location.location">
+            {{location.location}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-error>  
+        <span *ngIf="!projectForm.get('location').valid && projectForm.get('location').touched">Please Select Location</span>  
+    </mat-error>
+
+     <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Address" [(ngModel)]="project.address" formControlName="address"></textarea>
+    </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!projectForm.get('address').valid && projectForm.get('address').touched">Please enter address</span>  
+    </mat-error>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Business Value" [(ngModel)]="project.businessValue" formControlName="businessValue"> 
+    </mat-form-field>
+    <mat-error>  
+      <span *ngIf="!projectForm.get('businessValue').valid && projectForm.get('businessValue').touched">Please enter business value</span>  
+    </mat-error>
+
+    <mat-grid-list cols="3" rowHeight="10em">
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="primary" [disabled]="!projectForm.dirty || !projectForm.valid" (click)="submitForm();">Submit</button>
+        </mat-grid-tile>
+        <mat-grid-tile>  
+          <button mat-raised-button color="warn" type="reset">Clear</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+</form>
+
+  </div>
