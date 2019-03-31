@@ -17,6 +17,7 @@ export class MasterCityComponent implements OnInit {
 
   cityList : City[];
   cityData : City;
+  loading : boolean=false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -27,11 +28,11 @@ export class MasterCityComponent implements OnInit {
   displayedColumns = ['id', 'city','actions'];
 
   ngOnInit() {
-
+    this.loading = true;
     this.cityService.getAllCities().subscribe(
       res => {  
         this.cityList = res.result;
-
+        this.loading = false;
         this.cityDataSource = new MatTableDataSource();  
         this.cityDataSource.data = res.result;
         this.cityDataSource.paginator = this.paginator;
@@ -39,6 +40,7 @@ export class MasterCityComponent implements OnInit {
       },  
       error => {  
         console.log('There was an error while retrieving Albums !!!' + error);  
+        this.loading = false;
       }
     );
 

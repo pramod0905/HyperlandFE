@@ -2,7 +2,8 @@
 <button mat-raised-button (click)="openDialog()"color="primary" >Create City</button>
 </mat-card>
 <mat-card>
-    <div class="example-container mat-elevation-z8">  
+    <div class="example-container mat-elevation-z8">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         <mat-table #Table [dataSource]="cityDataSource" matSort>  
     
             <!-- For ID -->  

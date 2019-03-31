@@ -99,6 +99,7 @@ export class MasterFirmComponent implements OnInit {
   constructor(public dialog: MatDialog,public firmService : FirmService) {}
   
   firmList : Firm[];
+  loading : boolean=false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -123,7 +124,7 @@ export class MasterFirmComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.loading = true;
     this.firmDataSource = new MatTableDataSource();  
     //this.firmService.get();
 
@@ -134,9 +135,11 @@ export class MasterFirmComponent implements OnInit {
         this.firmDataSource.data = this.firmList;
         this.firmDataSource.paginator = this.paginator;
         this.firmDataSource.sort = this.sort;
+        this.loading = false;
       },  
       error => {  
         console.log('There was an error while retrieving Albums !!!' + error);  
+        this.loading= false;
       });
   }
 
