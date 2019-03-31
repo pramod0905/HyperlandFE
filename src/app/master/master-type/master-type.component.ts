@@ -101,6 +101,8 @@ export class MasterTypeComponent implements OnInit {
 
   propertyList : PropertyType[];
 
+  loading : boolean =false;
+
   displayedColumns = ['propertytype','actions'];
 
   openDialog(): void {
@@ -116,19 +118,22 @@ export class MasterTypeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.propertyTypeDataSource = new MatTableDataSource();  
     //this.firmService.get();
 
     console.log("Getting all firms");
     this.propertyTypeService.getAllProperties().subscribe(  
       res => {  
+        this.loading = false;
         this.propertyList = res.result;
         this.propertyTypeDataSource.data = this.propertyList;
         this.propertyTypeDataSource.paginator = this.paginator;
         this.propertyTypeDataSource.sort = this.sort;
       },  
       error => {  
-        console.log('There was an error while retrieving Albums !!!' + error);  
+        this.loading = true;
+        console.log('There was an error while retrieving !!!' + error);  
       });
   }
 

@@ -151,6 +151,8 @@ export class MasterLocationComponent implements OnInit {
 
   displayedColumns = ['id', 'cityName','location','actions'];
 
+  loading : boolean =false;
+
   openDialog(): void {
     this.locationData = new Location();
     const dialogRef = this.dialog.open(DialogOverviewLocationDialog, {
@@ -170,7 +172,7 @@ export class MasterLocationComponent implements OnInit {
 
     this.locationDataSource = new MatTableDataSource();  
     //this.firmService.get();
-
+    this.loading = true;
     console.log("Getting all location");
     this.locationService.getAllLocations().subscribe(  
       res => {  
@@ -178,9 +180,11 @@ export class MasterLocationComponent implements OnInit {
         this.locationDataSource.data = this.locationList;
         this.locationDataSource.paginator = this.paginator;
         this.locationDataSource.sort = this.sort;
+        this.loading = false;
       },  
       error => {  
         console.log('There was an error while retrieving Albums !!!' + error);  
+        this.loading = false;
       });
 
       this.cityService.getAllCities().subscribe(  

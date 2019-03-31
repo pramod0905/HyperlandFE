@@ -3,6 +3,7 @@
   </mat-card>
   <mat-card>
     <div class="example-container mat-elevation-z8">  
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         <mat-table #Table [dataSource]="propertyTypeDataSource" matSort>   
     
             <!-- For Property type -->  
