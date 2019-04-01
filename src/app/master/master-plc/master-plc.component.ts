@@ -2,10 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatTableDataSource } from '@angular/material';
 import { Firm } from '../../model/Firm';
 import { FirmService } from '../../services/firm.service';
-
-
-
-
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { PLCService } from '../../services/plc.service';
+import { PLC } from '../../model/PLC';
 
 @Component({
   selector: 'dialog-overview-block-dialog',
@@ -14,11 +13,18 @@ import { FirmService } from '../../services/firm.service';
 })
 export class DialogOverviewPlcDialog {
   firmList : any;
+  plcForm: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewPlcDialog>,
+    private fb : FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
       this.firmList = data;
+
+      this.plcForm= this.fb.group({
+        //'firmName': [null , Validators.required ],
+        //'address' : [null ,Validators.required ]
+      });
     }
 
   onNoClick(): void {
@@ -34,18 +40,19 @@ export class DialogOverviewPlcDialog {
 })
 export class MasterPlcComponent implements OnInit {
 
-  firmList : Firm[];
-  firmDataSource: any;
+  plcList : PLC[];
+  plcDataSource: any;
 
-  constructor(public dialog: MatDialog,public firmService : FirmService) { }
+  constructor(public dialog: MatDialog,public plcService : PLCService) { }
 
-  displayedColumns = ['firmName','projectName','plcName','plcCharges','chargingType'];
+  displayedColumns = ['firmName','propertyName','plcName','plcCharge','chargeType','actions'];
 
+  loading : boolean = false;
   openDialog(): void {
-    console.log(this.firmList);
+    console.log(this.plcList);
     const dialogRef = this.dialog.open(DialogOverviewPlcDialog, {
       width: '350px',
-      data: this.firmList
+      data: this.plcList
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -56,15 +63,18 @@ export class MasterPlcComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firmService.getAllFirms().subscribe(  
+    this.loading = true;
+    this.plcService.getAllPLC().subscribe(  
       res => {  
-        this.firmList = res.result;
-        console.log(this.firmList);
-        this.firmDataSource = new MatTableDataSource();  
-        this.firmDataSource.data = res.result;
+        this.plcList = res.result;
+        console.log(this.plcList);
+        this.plcDataSource = new MatTableDataSource();  
+        this.plcDataSource.data = res.result;
+        this.loading = false;
       },  
       error => {  
         console.log('There was an error while retrieving Albums !!!' + error);  
+        this.loading = false;
       });
   }
 

@@ -34,4 +34,9 @@ export class LocationService {
     var  baseURL = 'master/delete/location/'+locationId; 
     return this.http.post(baseURL,{});
   }
+
+  getAllLocationByCity(cityId : any) : Observable<any> {
+    var  baseURL = 'selector/get/location/'+cityId; 
+    return this.http.get(baseURL);
+  } 
 }

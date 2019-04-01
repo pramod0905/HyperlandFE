@@ -2,30 +2,27 @@
   <button mat-raised-button (click)="openDialog()" color="primary">Create Block</button>
   </mat-card>
   <mat-card>
-    <div class="example-container mat-elevation-z8">  
-        <mat-table #Table [dataSource]="firmDataSource" matSort>  
-    
-            <!-- For ID -->  
-    
-            <!-- For Firm name -->  
+    <div class="example-container mat-elevation-z8">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar> 
+        <mat-table #Table [dataSource]="blockDataSource" matSort>  
             <ng-container matColumnDef="firmName" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> FIRM NAME </mat-header-cell>  
-              <!--   <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   --> 
+                <mat-cell *matCellDef="let block"> {{block.firmName}} </mat-cell>   
             </ng-container>  
             
-            <ng-container matColumnDef="projectName" sticky>  
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </mat-header-cell>  
-            <!--   <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>  -->
+            <ng-container matColumnDef="propertyName" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PROPERTY NAME </mat-header-cell>  
+              <mat-cell *matCellDef="let block"> {{block.propertyName}} </mat-cell> 
             </ng-container>  
 
-             <ng-container matColumnDef="type" sticky>  
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>  
-            <!--  <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell> -->
+             <ng-container matColumnDef="propertyType" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> PROPERTY TYPE </mat-header-cell>  
+             <mat-cell *matCellDef="let block"> {{block.propertyType}} </mat-cell>
             </ng-container>  
 
-            <ng-container matColumnDef="blockName" sticky>  
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Block Name </mat-header-cell>  
-              <!--  <mat-cell *matCellDef="let firm"> {{firm.firmName}} </mat-cell>   -->
+            <ng-container matColumnDef="block" sticky>  
+              <mat-header-cell *matHeaderCellDef mat-sort-header> BLOCK NAME</mat-header-cell>  
+               <mat-cell *matCellDef="let block"> {{block.block}} </mat-cell>  
              </ng-container> 
 
             <ng-container matColumnDef="actions" sticky>  

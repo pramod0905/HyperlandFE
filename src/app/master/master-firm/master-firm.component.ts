@@ -29,6 +29,8 @@ export class DialogOverviewExampleDialog  implements OnInit {
 
     firm : Firm;
 
+    loading : boolean = false;
+
     ngOnInit() {
       if(this.data!=null || this.data!==undefined)
       {
@@ -63,15 +65,18 @@ export class DialogOverviewExampleDialog  implements OnInit {
     submitForm() {
       if(this.firm.id==undefined || this.firm.id==null) {
         // create new firm
+        this.loading = true;
         this.firmService.createFirm(this.firm).subscribe(  
           res => {  
             console.log(res);
+            this.loading = false;
             this.openSnackBar('Firm Created Successfully','');
             this.closePopup();
           },  
           error => {  
             console.log('There was an error while retrieving Albums !!!' + error);
             this.openSnackBar('Error while creating firm, Please contact your adminstrator','');
+            this.loading = false;
           });
       }
       else {
@@ -115,7 +120,8 @@ export class MasterFirmComponent implements OnInit {
     this.firmData = new Firm();
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '400px',
-      data : this.firmData
+      data : this.firmData,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {

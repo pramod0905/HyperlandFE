@@ -24,14 +24,14 @@ export class DialogOverviewEProjectDialog implements OnInit{
     public dialogRef: MatDialogRef<DialogOverviewEProjectDialog>,private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private snackBar : MatSnackBar,
+    private locationService : LocationService,
     private projectService : ProjectService) {
 
       this.firmList = data.firmList;
       this.cityList = data.cityList;
-      this.locationList = data.locationList;
+      //this.locationList = data.locationList;
       console.log("Firm List:",this.firmList);
       console.log("City List:",this.cityList);
-      console.log("Location List:",this.locationList);
       this.projectForm= this.fb.group({
         'firmName': [null , Validators.required ],
         'address' : [null ,Validators.required ],
@@ -53,7 +53,16 @@ export class DialogOverviewEProjectDialog implements OnInit{
 
   setCity(city : any) : void {
     console.log("City:",city);
-    this.project.cityId = city.id; 
+    this.project.cityId = city.id;
+    this.locationList = [];
+    this.locationService.getAllLocationByCity(city.id).subscribe(
+      res => {  
+        console.log(res);
+        this.locationList = res.result;
+      },  
+      error => {  
+        
+      });
   }
 
   setLocation(location : any)  : void {
@@ -122,6 +131,7 @@ export class MasterProjectComponent implements OnInit {
   locationList : Location[];
   projectList : Project[];
   projectDataSource: any;
+  loading : boolean =false;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -130,7 +140,7 @@ export class MasterProjectComponent implements OnInit {
     public cityService : CityService,public locationService : LocationService,
     public projectService : ProjectService) { }
 
-  displayedColumns = ['firmName','projectName','city','location','address','businessValue','actions']; 
+  displayedColumns = ['firmName','projectName','PropertyType','cityName','location','address','businessValue','actions']; 
 
   openDialog(): void {
     console.log(this.firmList);
@@ -149,14 +159,17 @@ export class MasterProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.projectService.getAllProjects().subscribe(
       res => {  
+        this.loading = false;
         this.projectList = res.result;
         console.log(this.projectList);
         this.projectDataSource = new MatTableDataSource();  
         this.projectDataSource.data = res.result;
       },  
       error => {  
+        this.loading =false;
         console.log('There was an error while retrieving !!!' + error);
     });
 

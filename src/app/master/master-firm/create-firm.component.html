@@ -1,36 +1,42 @@
 <h4 mat-dialog-title>Firm Master </h4>
   <div mat-dialog-content>
       <form class="example-form"[formGroup]="firmForm" (ngSubmit)="onFormSubmit(firmForm.value)">
-      <div class="example-container">
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Firm Name" formControlName="firmName" [(ngModel)]="firm.firmName">
-        </mat-form-field>
-        <mat-error>  
-          <span *ngIf="!firmForm.get('firmName').valid && firmForm.get('firmName').touched">Please enter firm name</span>  
-        </mat-error>
-
-        <!-- <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Address" formControlName="address" [(ngModel)]="firm.address"></textarea>
-        </mat-form-field>
-        <mat-error>  
-          <span *ngIf="!firmForm.get('address').valid && firmForm.get('address').touched">Please enter firm address</span>  
-        </mat-error> -->
-
-        <!-- <mat-form-field>
-          <input matInput placeholder="Select File"><br><br>
-        </mat-form-field> -->
-
-        <mat-grid-list cols="3" rowHeight="10em">
-            <mat-grid-tile>
-              <button type="button" mat-raised-button color="primary" [disabled]="!firmForm.dirty || !firmForm.valid" (click)="submitForm();">Submit</button>
-            </mat-grid-tile>
-            <mat-grid-tile>  
-              <button mat-raised-button color="warn" type="reset">Clear</button>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
-            </mat-grid-tile>
-        </mat-grid-list>
-        </div>
+        <div *ngIf="!loading;else other_content">
+          <div class="example-container">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Firm Name" formControlName="firmName" [(ngModel)]="firm.firmName">
+              </mat-form-field>
+              <mat-error>  
+                <span *ngIf="!firmForm.get('firmName').valid && firmForm.get('firmName').touched">Please enter firm name</span>  
+              </mat-error>
+      
+              <!-- <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Address" formControlName="address" [(ngModel)]="firm.address"></textarea>
+              </mat-form-field>
+              <mat-error>  
+                <span *ngIf="!firmForm.get('address').valid && firmForm.get('address').touched">Please enter firm address</span>  
+              </mat-error> -->
+      
+              <!-- <mat-form-field>
+                <input matInput placeholder="Select File"><br><br>
+              </mat-form-field> -->
+      
+              <mat-grid-list cols="3" rowHeight="10em">
+                  <mat-grid-tile>
+                    <button type="button" mat-raised-button color="primary" [disabled]="!firmForm.dirty || !firmForm.valid" (click)="submitForm();">Submit</button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>  
+                    <button mat-raised-button color="warn" type="reset">Clear</button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <button type="button" mat-raised-button color="accent" (click)="closePopup();">Close</button>
+                  </mat-grid-tile>
+              </mat-grid-list>
+              </div>
+          </div>  
+        <ng-template #other_content>
+            <mat-spinner></mat-spinner>
+        </ng-template>
+        
       </form>
   </div>

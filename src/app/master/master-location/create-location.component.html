@@ -14,8 +14,8 @@
         </mat-form-field> -->
         <mat-form-field class="example-full-width">
             <mat-label>City</mat-label>
-            <mat-select  (selectionChange)="setCity($event.value)">
-              <mat-option *ngFor="let city of cityList" [value]="city">
+            <mat-select  [(value)]= "location.cityId"  (selectionChange)="setCity($event.value)">
+              <mat-option *ngFor="let city of cityList" [value]="city.value">
                 {{city.name}}
               </mat-option>
             </mat-select>

@@ -10,7 +10,7 @@ import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import * as hljsTypescript from 'highlight.js/lib/languages/typescript';
 import { MasterFirmComponent, DialogOverviewExampleDialog } from './master-firm/master-firm.component';
-import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatProgressBarModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatFormField, MatIconModule, MatTableModule, MatCardModule, MatPaginatorModule, MatSortModule, MatInputModule, MatGridListModule, MatSnackBarModule, MatOptionModule, MatSelectModule, MatProgressBarModule, MatProgressSpinnerModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MasterCityComponent } from './master-city/master-city.component';
 import { MasterProjectComponent, DialogOverviewEProjectDialog } from './master-project/master-project.component';
@@ -53,6 +53,7 @@ export function highlightJsFactory(): any {
     MatOptionModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXTJwhYqJ6Pc7VXGRMTv40N1WRLqzuSNs'
     }),

@@ -44,18 +44,18 @@ export class DialogOverviewBlockDialog {
 })
 export class MasterBlockComponent implements OnInit {
 
-  firmList : Firm[];
-  firmDataSource: any;
+  blockList : Block[];
+  blockDataSource: any;
+  loading : boolean = false; 
+  constructor(public dialog: MatDialog,public blockService : BlockService) { }
 
-  constructor(public dialog: MatDialog,public firmService : FirmService) { }
-
-  displayedColumns = ['firmName','projectName','type','blockName']; 
+  displayedColumns = ['firmName','propertyName','propertyType','block','actions']; 
 
   openDialog(): void {
-    console.log(this.firmList);
+    console.log(this.blockList);
     const dialogRef = this.dialog.open(DialogOverviewBlockDialog, {
       width: '350px',
-      data: this.firmList
+      data: this.blockList
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -64,20 +64,19 @@ export class MasterBlockComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.firmService.getAllFirms().subscribe(  
+    this.loading = true;
+    this.blockService.getAllBlocks().subscribe(  
       res => {  
-        this.firmList = res.result;
-        console.log(this.firmList);
-        this.firmDataSource = new MatTableDataSource();  
-        this.firmDataSource.data = res.result;
+        this.loading = false;
+        this.blockList = res.result;
+        console.log(this.blockList);
+        this.blockDataSource = new MatTableDataSource();  
+        this.blockDataSource.data = res.result;
       },  
       error => {  
         console.log('There was an error while retrieving Albums !!!' + error);  
-      });
-      
-  }
-
-
+        this.loading = false;
+      });  
+    }
   }
 
