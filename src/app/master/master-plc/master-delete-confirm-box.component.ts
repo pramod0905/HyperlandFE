@@ -3,18 +3,19 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
 import { Firm } from "../../model/Firm";
 import { FirmService } from "../../services/firm.service";
 import { LocationService } from "../../services/location.service";
-import { ProjectService } from "../../services/project.service";
+import { BlockService } from "../../services/block.service";
+import { PLCService } from "../../services/plc.service";
 
 @Component({
-    selector: 'dialog-delete-project',
-    templateUrl: './delete-project.component.html'
+    selector: 'dialog-delete-plc',
+    templateUrl: './delete-plc.component.html'
   })
-  export class DeleteProjectConfirmBoxDialog  implements OnInit {
+  export class DeletePLCConfirmBoxDialog  implements OnInit {
   
     constructor(
-      public dialogRef: MatDialogRef<DeleteProjectConfirmBoxDialog>,
+      public dialogRef: MatDialogRef<DeletePLCConfirmBoxDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
-      private projectService: ProjectService,
+      private plcService : PLCService,
       private snackBar : MatSnackBar) {
       }
       
@@ -26,11 +27,10 @@ import { ProjectService } from "../../services/project.service";
         this.dialogRef.close();
       }
   
-      onYesClick(projectId : any) : void {
-        console.log("Id is :"+projectId);
-        this.projectService.deleteProjct(projectId).subscribe(res => {  
+      onYesClick(id : any) : void {
+        this.plcService.deletePLC(id).subscribe(res => {  
           console.log("Result:"+res);
-          this.openSnackBar('Project Deleted Successfully','');
+          this.openSnackBar('PLC Deleted Successfully','');
           this.dialogRef.close();
       });
     }

@@ -41,6 +41,7 @@
     
                   <button mat-raised-button color="warn" 
                     matTooltip="Delete PLC"
+                    (click)="openConfirmDeleteDialog(plc.id)"
                     style="margin-left: 10px">
                     <i class="material-icons">delete</i>
                   </button>

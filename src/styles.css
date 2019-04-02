@@ -1,2 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.transparent .mat-dialog-container {
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.0);
+}

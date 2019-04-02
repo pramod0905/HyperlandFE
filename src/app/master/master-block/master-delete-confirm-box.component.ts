@@ -3,17 +3,18 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
 import { Firm } from "../../model/Firm";
 import { FirmService } from "../../services/firm.service";
 import { LocationService } from "../../services/location.service";
+import { BlockService } from "../../services/block.service";
 
 @Component({
-    selector: 'dialog-delete-location',
-    templateUrl: './delete-location.component.html'
+    selector: 'dialog-delete-block',
+    templateUrl: './delete-block.component.html'
   })
-  export class DeleteLocationConfirmBoxDialog  implements OnInit {
+  export class DeleteBlockConfirmBoxDialog  implements OnInit {
   
     constructor(
-      public dialogRef: MatDialogRef<DeleteLocationConfirmBoxDialog>,
+      public dialogRef: MatDialogRef<DeleteBlockConfirmBoxDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
-      private locationService: LocationService,
+      private blockService : BlockService,
       private snackBar : MatSnackBar) {
       }
       
@@ -26,10 +27,9 @@ import { LocationService } from "../../services/location.service";
       }
   
       onYesClick(id : any) : void {
-        console.log("Id is :"+this.data);
-        this.locationService.deleteLocation(this.data).subscribe(res => {  
+        this.blockService.deleteBlock(id).subscribe(res => {  
           console.log("Result:"+res);
-          this.openSnackBar('Location Deleted Successfully','');
+          this.openSnackBar('Block Deleted Successfully','');
           this.dialogRef.close();
       });
     }

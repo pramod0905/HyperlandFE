@@ -222,10 +222,10 @@ export class MasterLocationComponent implements OnInit {
     });
   }
 
-  openConfirmDeleteDialog(firmId : any): void {
+  openConfirmDeleteDialog(locationId : any): void {
     const confirmDeleteFirmDialog = this.dialog.open(DeleteLocationConfirmBoxDialog, {
       width: '400px',
-      data : firmId
+      data : locationId
     });
 
     confirmDeleteFirmDialog.afterClosed().subscribe(result => {

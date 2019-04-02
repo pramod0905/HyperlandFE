@@ -40,6 +40,7 @@
                 <mat-cell *matCellDef="let project"> {{project.businessValue}} </mat-cell>  
              </ng-container> 
 
+             
             <ng-container matColumnDef="actions" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
                  <mat-cell *matCellDef="let project">  
@@ -51,6 +52,7 @@
     
                   <button mat-raised-button color="warn" 
                     matTooltip="Delete project"
+                    (click)="openConfirmDeleteDialog(project.id)"
                     style="margin-left: 10px">
                     <i class="material-icons">delete</i>
                   </button>

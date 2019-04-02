@@ -2,35 +2,35 @@
   <div mat-dialog-content>
   <form class="example-form"[formGroup]="blockForm" (ngSubmit)="onFormSubmit(blockForm.value)">
   <div class="example-container">
-    <mat-form-field>
+    <mat-form-field class="example-full-width">
         <mat-label>Firm Name</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let firm of firmList" [value]="firm.firmName">
+        <mat-select [(value)] = "block.firmId">
+          <mat-option *ngFor="let firm of firmList" [value]="firm.id">
             {{firm.firmName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-    <mat-form-field>
+    <!-- <mat-form-field class="example-full-width">
         <mat-label>Project Name</mat-label>
-        <mat-select>
+        <mat-select >
           <mat-option *ngFor="let project of projectList" [value]="project.value">
-            {{project.viewValue}}
+            {{project.projectName}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Type</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let type of typeList" [value]="type.value">
-            {{type.viewValue}}
+        <mat-select [(value)] = "block.propertyTypeId">
+          <mat-option *ngFor="let type of propertyTypeList" [value]="type.id">
+            {{type.PropertyType}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Block Name">
+        <input matInput placeholder="Block Name" [(ngModel)] = "block.block">
     </mat-form-field>
 
 

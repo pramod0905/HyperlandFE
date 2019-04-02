@@ -8,6 +8,7 @@ import { City } from '../../model/City';
 import { CityService } from '../../services/city.service';
 import { LocationService } from '../../services/location.service';
 import { ProjectService } from '../../services/project.service';
+import { DeleteProjectConfirmBoxDialog } from './master-delete-confirm-box.component';
 
 @Component({
   selector: 'dialog-overview-project-dialog',
@@ -200,6 +201,18 @@ export class MasterProjectComponent implements OnInit {
         console.log('There was an error while retrieving !!!' + error);  
     });
 
+  }
+
+  openConfirmDeleteDialog(projectId : any): void {
+    console.log("ProjectId:",projectId);
+    const confirmDeleteProjectDialog = this.dialog.open(DeleteProjectConfirmBoxDialog, {
+      width: '400px',
+      data : projectId
+    });
+
+    confirmDeleteProjectDialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

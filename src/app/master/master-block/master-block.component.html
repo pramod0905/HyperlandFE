@@ -27,15 +27,16 @@
 
             <ng-container matColumnDef="actions" sticky>  
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>  
-                 <mat-cell *matCellDef="let firm">  
+                 <mat-cell *matCellDef="let block">  
                   <button mat-raised-button color="primary"
-                    matTooltip="Edit Firm"
-                    (click)="editFirmDetails(firm.id)">
+                    matTooltip="Edit Block"
+                    (click)="editBlockDetails(block.id)">
                     <i class="material-icons">create</i>
                   </button>
     
                   <button mat-raised-button color="warn" 
                     matTooltip="Delete Firm"
+                    (click)="openConfirmDeleteDialog(block.id)"
                     style="margin-left: 10px">
                     <i class="material-icons">delete</i>
                   </button>

@@ -5,6 +5,7 @@ import { FirmService } from '../../services/firm.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { PLCService } from '../../services/plc.service';
 import { PLC } from '../../model/PLC';
+import { DeletePLCConfirmBoxDialog } from './master-delete-confirm-box.component';
 
 @Component({
   selector: 'dialog-overview-block-dialog',
@@ -76,6 +77,17 @@ export class MasterPlcComponent implements OnInit {
         console.log('There was an error while retrieving Albums !!!' + error);  
         this.loading = false;
       });
+  }
+
+  openConfirmDeleteDialog(id : any): void {
+    const confirmDeletePLCDialog = this.dialog.open(DeletePLCConfirmBoxDialog, {
+      width: '400px',
+      data : id
+    });
+
+    confirmDeletePLCDialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

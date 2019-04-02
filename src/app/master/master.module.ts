@@ -23,6 +23,9 @@ import { DialogOverviewPlcDialog, MasterPlcComponent } from './master-plc/master
 import { DeletePropertyTypeConfirmBoxDialog } from './master-type/master-delete-confirm-box.component';
 import { MasterLocationComponent, DialogOverviewLocationDialog } from './master-location/master-location.component';
 import { DeleteLocationConfirmBoxDialog } from './master-location/master-delete-confirm-box.component';
+import { DeleteBlockConfirmBoxDialog } from './master-block/master-delete-confirm-box.component';
+import { DeletePLCConfirmBoxDialog } from './master-plc/master-delete-confirm-box.component';
+import { DeleteProjectConfirmBoxDialog } from './master-project/master-delete-confirm-box.component';
 //8import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 
 
@@ -67,6 +70,8 @@ export function highlightJsFactory(): any {
                       DialogOverviewExampleDialog,
                       DeleteMasterConfirmBoxDialog,
                       DeleteLocationConfirmBoxDialog,
+                      DeleteBlockConfirmBoxDialog,
+                      DeleteProjectConfirmBoxDialog,
                       CityDialog,
                       DeleteCityConfirmBoxDialog,
                       DeletePropertyTypeConfirmBoxDialog,
@@ -75,6 +80,7 @@ export function highlightJsFactory(): any {
                       DialogOverviewTypeDialog,
                       DialogOverviewPlcDialog,
                       DialogOverviewLocationDialog,
+                      DeletePLCConfirmBoxDialog,
                     ],
   declarations: [
     DialogOverviewExampleDialog,
@@ -83,6 +89,7 @@ export function highlightJsFactory(): any {
     DeleteCityConfirmBoxDialog,
     DeleteLocationConfirmBoxDialog,
     DeletePropertyTypeConfirmBoxDialog,
+    DeleteBlockConfirmBoxDialog,
     DialogOverviewEProjectDialog,
     DialogOverviewBlockDialog,
     DialogOverviewTypeDialog,
@@ -97,6 +104,8 @@ export function highlightJsFactory(): any {
     MasterPlcComponent,
     MasterFirmComponent,
     MasterLocationComponent,
+    DeletePLCConfirmBoxDialog,
+    DeleteProjectConfirmBoxDialog
    // LeafletMapComponent
 ],
 
